@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @train_stop.name %>
+</p>
+
+<p>
+  <strong>Arrive time:</strong>
+  <%= @train_stop.arrive_time %>
+</p>
+
+<p>
+  <strong>Depart time:</strong>
+  <%= @train_stop.depart_time %>
+</p>
+
+<p>
+  <strong>Line:</strong>
+  <%= @train_stop.line_id %>
+</p>
+
+<%= link_to 'Edit', edit_train_stop_path(@train_stop) %> |
+<%= link_to 'Back', train_stops_path %>
