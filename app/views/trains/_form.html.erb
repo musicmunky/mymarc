@@ -1,25 +1,40 @@
-<%= form_for(@train) do |f| %>
-  <% if @train.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@train.errors.count, "error") %> prohibited this train from being saved:</h2>
 
-      <ul>
-      <% @train.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@train, html: { class: "rails_form", style: 'height:650px;' }) do |f| %>
+	<% if @train.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@train.errors.count, "error") %> prohibited this train from being saved:</h2>
+			<ul>
+			<% @train.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.number_field :number %>
-  </div>
-  <div class="field">
-    <%= f.label :line_id %><br>
-    <%= f.number_field :line_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="field w100fl">
+		<%= f.label :number %><br>
+		<%= f.text_field :number, { class: "txt100", style: "" } %>
+	</div>
+	<div class="field w100fl">
+		<% lines = Line.all.map {|l| [l.name, l.id]} %>
+		<%# Line.all.each do |ln| %>
+			<%# lines.push([ln.name, ln.id]) %>
+		<%# end %>
+		<%= f.label :line_id %><br>
+		<%= f.select :line_id, lines, {}, { class: "txt100", style: "" } %>
+	</div>
+	<div class="field w100fl">
+		<%= f.label :direction %><br>
+		<select class="txt100">
+			<option value="">Select a direction...</option>
+			<option value="N">North</option>
+			<option value="S">South</option>
+			<option value="E">East</option>
+			<option value="W">West</option>
+		</select>
+	</div>
+	<div class="actions w100fl">
+		<%= f.submit "Submit", { class: "btn btn-success", style: "float:left;width:150px;", onclick: "return checkTrainForm();" } %>
+		<%= link_to 'Back', trains_path, { class: "btn btn-primary", style: "float:right;width:150px;" } %>
+	</div>
 <% end %>

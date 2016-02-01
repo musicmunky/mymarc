@@ -1,1 +1,11 @@
-Hello World!
+<% @TTLS.each do |title| %>
+	<h3><%= title.to_s %></h3>
+<% end %>
+<br>
+<% @FEED.each do |key, val| %>
+	<% line = @FEED[key] %>
+<!--	<h4><%#= "#{line['title']} - #{line['pubdate']}" %></h4>//-->
+	<h4>MARC <%= "#{line['train_number']} - #{line['pubdate']}" %></h4>
+	<p><%= line['description'] %></p>
+	<br><br>
+<% end %>

@@ -1,25 +1,21 @@
-<%= form_for(@line) do |f| %>
-  <% if @line.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
+<%= form_for(@line, html: { class: "rails_form", style: 'height:150px;' }) do |f| %>
+	<% if @line.errors.any? %>
+		<div id="error_explanation">
+			<h3><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h3>
+			<ul>
+			<% @line.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-      <ul>
-      <% @line.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :direction %><br>
-    <%= f.text_field :direction %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<div class="field w100fl">
+		<%= f.label :name %><br>
+		<%= f.text_field :name, { class: "txt100", style: "" } %>
+	</div>
+	<div class="actions w100fl">
+		<%= f.submit "Submit", { class: "btn btn-success", style: "float:left;width:150px;", onclick: "return checkLineForm();" } %>
+		<%= link_to 'Back', lines_path, { class: "btn btn-primary", style: "float:right;width:150px;" } %>
+	</div>
 <% end %>
