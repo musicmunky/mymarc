@@ -17,9 +17,6 @@
 	</div>
 	<div class="field w100fl">
 		<% lines = Line.all.map {|l| [l.name, l.id]} %>
-		<%# Line.all.each do |ln| %>
-			<%# lines.push([ln.name, ln.id]) %>
-		<%# end %>
 		<%= f.label :line_id %><br>
 		<%= f.select :line_id, lines, {}, { class: "txt100", style: "" } %>
 	</div>
